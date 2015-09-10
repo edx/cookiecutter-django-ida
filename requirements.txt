@@ -1,0 +1,2 @@
+cookiecutter
+git+https://github.com/edx/edx-lint.git@v0.2.7#egg=edx_lint==0.2.7
