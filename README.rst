@@ -37,7 +37,7 @@ edx-lint:
 .. code-block:: bash
 
     $ pip install cookiecutter
-    $ pip install git+https://github.com/edx/edx-lint.git@v0.2.5#egg=edx_lint==0.2.5
+    $ pip install edx-lint
 
 cookiecutter has the ability to pull templates directly from git, so there is no need to clone this repo. To access the
 template, provide the repo path as an argument:
