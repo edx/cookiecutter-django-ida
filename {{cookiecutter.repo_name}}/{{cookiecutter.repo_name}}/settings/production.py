@@ -2,7 +2,7 @@ from os import environ
 import yaml
 
 from {{cookiecutter.repo_name}}.settings.base import *
-from {{cookiecutter.repo_name}}.settings.utils import get_env_setting
+from {{cookiecutter.repo_name}}.settings.utils import get_env_setting, get_logger_config
 
 
 DEBUG = False
@@ -10,12 +10,12 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['*']
 
-CONFIG_FILE = get_env_setting('{{cookiecutter.repo_name|upper}}_CFG')
+LOGGING = get_logger_config()
 
+CONFIG_FILE = get_env_setting('{{cookiecutter.repo_name|upper}}_CFG')
 with open(CONFIG_FILE) as f:
     config_from_yaml = yaml.load(f)
-
-vars().update(config_from_yaml)
+    vars().update(config_from_yaml)
 
 DB_OVERRIDES = dict(
     PASSWORD=environ.get('DB_MIGRATION_PASS', DATABASES['default']['PASSWORD']),
