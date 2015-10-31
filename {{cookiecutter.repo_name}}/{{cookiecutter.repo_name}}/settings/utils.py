@@ -82,11 +82,6 @@ def get_logger_config(log_dir='/var/tmp',
                 'propagate': True,
                 'level': 'WARNING'
             },
-            'suds': {
-                'handlers': handlers,
-                'propagate': True,
-                'level': 'WARNING'
-            },
             'factory': {
                 'handlers': handlers,
                 'propagate': True,
