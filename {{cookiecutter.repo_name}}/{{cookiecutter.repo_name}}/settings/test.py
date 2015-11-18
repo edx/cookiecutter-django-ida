@@ -1,7 +1,6 @@
 import os
 
 from {{cookiecutter.repo_name}}.settings.base import *
-from {{cookiecutter.repo_name}}.settings.utils import get_logger_config
 
 
 # TEST SETTINGS
@@ -16,7 +15,6 @@ NOSE_ARGS = [
     '--logging-level=DEBUG',
 ]
 
-LOGGING = get_logger_config(debug=False, dev_env=True, local_loglevel='DEBUG')
 # END TEST SETTINGS
 
 
