@@ -2,5 +2,6 @@
   "project_name": "project_name",
   "repo_name": "repo_name",
   "author_name": "edX",
-  "description": "A short description of the project."
+  "description": "A short description of the project.",
+  "port": 8000
 }

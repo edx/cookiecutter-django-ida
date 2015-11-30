@@ -19,6 +19,9 @@ help:
 	@echo "  requirements               install requirements for local development"
 	@echo "  test                       run tests and generate coverage report"
 	@echo "  validate                   run tests and quality checks"
+	@echo "  start-devstack             run a local development copy of the server"
+	@echo "  open-devstack              open a shell on the server started by start-devstack"
+	@echo "  pkg-devstack               build the {{cookiecutter.repo_name}} image from the latest configuration and code"
 	@echo ""
 
 clean:
@@ -26,11 +29,14 @@ clean:
 	coverage erase
 	rm -rf assets
 
-requirements:
+local-requirements:
 	pip install -qr requirements/local.txt --exists-action w
 
+requirements:
+	pip install -qr requirements.txt --exists-action w
+
 test: clean
-	REUSE_DB=1 coverage run ./manage.py test {{cookiecutter.repo_name}} --settings={{cookiecutter.repo_name}}.settings.test
+	coverage run ./manage.py test {{cookiecutter.repo_name}} --settings={{cookiecutter.repo_name}}.settings.test
 	coverage report
 
 quality:
@@ -62,3 +68,12 @@ pull_translations:
 
 push_translations:
 	tx push -s
+
+start-devstack:
+	docker-compose --x-networking up
+
+open-devstack:
+	docker exec -it {{cookiecutter.repo_name}} /edx/app/{{cookiecutter.repo_name}}/devstack.sh open
+
+pkg-devstack:
+	docker build -t {{cookiecutter.repo_name}}:latest -f docker/build/{{cookiecutter.repo_name}}/Dockerfile git://github.com/edx/configuration

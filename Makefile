@@ -12,14 +12,16 @@ test:
 	# Create a new project with the default values
 	cookiecutter . --no-input
 
+	virtualenv repo_name/.venv
+
 	# Execute the project's tests
-	cd repo_name && make requirements
-	cd repo_name && python manage.py makemigrations
-	cd repo_name && make migrate
-	cd repo_name && make validate
+	. repo_name/.venv/bin/activate && cd repo_name && make local-requirements
+	. repo_name/.venv/bin/activate && cd repo_name && python manage.py makemigrations
+	. repo_name/.venv/bin/activate && cd repo_name && make migrate
+	. repo_name/.venv/bin/activate && cd repo_name && make validate
 
 	# Ensure translations can be compiled
-	cd repo_name && make fake_translations
+	. repo_name/.venv/bin/activate && cd repo_name && make fake_translations
 
 	# Ensure documentation can be compiled
-	cd repo_name/docs && make html
+	. repo_name/.venv/bin/activate && cd repo_name/docs && make html
