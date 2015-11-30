@@ -7,6 +7,7 @@ django-nose
 mock
 nose-ignore-docstring
 pep8
-pylint
+pylint < 1.5
+astroid < 1.4
 
 edx-lint
