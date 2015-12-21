@@ -42,5 +42,5 @@ urlpatterns = [
 ]
 
 if settings.DEBUG and os.environ.get('ENABLE_DJANGO_TOOLBAR', False):  # pragma: no cover
-    import debug_toolbar  # pylint: disable=import-error
+    import debug_toolbar  # pylint: disable=import-error,wrong-import-position,wrong-import-order
     urlpatterns.append(url(r'^__debug__/', include(debug_toolbar.urls)))
