@@ -25,3 +25,6 @@ class User(AbstractUser):
 
     def get_full_name(self):
         return self.full_name or super(User, self).get_full_name()
+
+    def __unicode__(self):
+        return unicode(self.get_full_name())

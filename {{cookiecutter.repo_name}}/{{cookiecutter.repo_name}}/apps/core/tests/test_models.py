@@ -38,3 +38,9 @@ class UserTests(TestCase):
 
         user = G(User, full_name=full_name, first_name=first_name, last_name=last_name)
         self.assertEquals(user.get_full_name(), full_name)
+
+    def test_unicode(self):
+        """Verify that the model's unicode method returns the user's full name."""
+        full_name = "Bob"
+        user = G(User, full_name=full_name)
+        self.assertEquals(unicode(user), full_name)
