@@ -3,4 +3,6 @@ django-extensions==1.5.5
 django-waffle
 djangorestframework
 edx-auth-backends
+# https://github.com/omab/python-social-auth/pull/897
+python-social-auth==0.2.14
 pytz
