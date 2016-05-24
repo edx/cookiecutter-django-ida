@@ -3,10 +3,6 @@
 -r docs.txt
 
 django-debug-toolbar
-
-# i18n
+docker-compose >= 1.7.1
+git+https://github.com/edx/i18n-tools.git@v0.3.1#egg=i18n_tools==0.3.1
 transifex-client
-git+https://github.com/edx/i18n-tools.git@v0.1.4#egg=i18n_tools==0.1.4
-
-# for docker devstack
-docker-compose >= 1.5.1
