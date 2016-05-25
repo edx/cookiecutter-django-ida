@@ -11,6 +11,7 @@ A cookiecutter_ template for edX Django projects.
 
 .. _cookiecutter: http://cookiecutter.readthedocs.org/en/latest/index.html
 
+**This template produces a Python 3.5 project.**
 
 This cookiecutter template is intended for new edX independently deployable apps (IDAs). It includes the following packages:
 
@@ -25,7 +26,7 @@ The necessary configuration is also in place to support:
 * Authentication with edX Open ID Connect
 * Loading settings from YAML (for production)
 * Pylint/PEP8 validation
-* Travis CI.
+* Travis CI
 
 .. _Sphinx: http://sphinx-doc.org/
 
