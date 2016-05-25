@@ -4,8 +4,7 @@
 coverage
 django-dynamic-fixture
 django-nose
+edx-lint
 mock
 nose-ignore-docstring
 pep8
-
-edx-lint
