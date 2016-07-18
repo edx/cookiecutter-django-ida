@@ -15,7 +15,7 @@ test:
 	virtualenv repo_name/.venv
 
 	# Execute the project's tests
-	. repo_name/.venv/bin/activate && cd repo_name && make local-requirements
+	. repo_name/.venv/bin/activate && cd repo_name && make requirements
 	. repo_name/.venv/bin/activate && cd repo_name && python manage.py makemigrations
 	. repo_name/.venv/bin/activate && cd repo_name && make migrate
 	. repo_name/.venv/bin/activate && cd repo_name && make validate
