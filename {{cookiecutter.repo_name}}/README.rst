@@ -8,7 +8,7 @@ __ http://code.edx.org/
 .. _Travis: https://travis-ci.org/edx/{{cookiecutter.repo_name}}
 
 .. |Codecov| image:: http://codecov.io/github/edx/{{cookiecutter.repo_name}}/coverage.svg?branch=master
-.. Codecov: http://codecov.io/github/edx/{{cookiecutter.repo_name}}?branch=master
+.. _Codecov: http://codecov.io/github/edx/{{cookiecutter.repo_name}}?branch=master
 
 The ``README.rst`` file should start with a brief description of the repository,
 which sets it in the context of other repositories under the ``edx``
