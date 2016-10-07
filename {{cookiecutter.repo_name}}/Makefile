@@ -23,6 +23,8 @@ help:
 	@echo "  start-devstack             run a local development copy of the server"
 	@echo "  open-devstack              open a shell on the server started by start-devstack"
 	@echo "  pkg-devstack               build the {{cookiecutter.repo_name}} image from the latest configuration and code"
+	@echo "  detect_changed_source_translations       check if translation files are up-to-date"
+	@echo "  validate_translations      install fake translations and check if translation files are up-to-date"
 	@echo ""
 
 clean:
@@ -78,3 +80,8 @@ open-devstack:
 
 pkg-devstack:
 	docker build -t {{cookiecutter.repo_name}}:latest -f docker/build/{{cookiecutter.repo_name}}/Dockerfile git://github.com/edx/configuration
+
+detect_changed_source_translations:
+	cd {{cookiecutter.repo_name}} && i18n_tool changed
+
+validate_translations: fake_translations detect_changed_source_translations
