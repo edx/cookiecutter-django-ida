@@ -9,8 +9,9 @@ before_install:
     - "sh -e /etc/init.d/xvfb start"
 install:
     - pip install -U pip wheel codecov
-    - pip install -r requirements/test.txt
+    - make requirements
 script:
+    - make validate_translations
     - make validate
 after_success:
     - codecov
