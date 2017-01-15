@@ -47,6 +47,9 @@ INTERNAL_IPS = ('127.0.0.1',)
 # END TOOLBAR CONFIGURATION
 
 # AUTHENTICATION
+# Use a non-SSL URL for authorization redirects
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = False
+
 # Set these to the correct values for your OAuth2/OpenID Connect provider (e.g., devstack)
 SOCIAL_AUTH_EDX_OIDC_KEY = 'replace-me'
 SOCIAL_AUTH_EDX_OIDC_SECRET = 'replace-me'
