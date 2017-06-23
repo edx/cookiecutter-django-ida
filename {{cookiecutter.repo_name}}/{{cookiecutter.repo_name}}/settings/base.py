@@ -28,7 +28,7 @@ INSTALLED_APPS = (
 
 THIRD_PARTY_APPS = (
     'rest_framework',
-    'social.apps.django_app.default',
+    'social_django',
     'waffle',
 )
 
@@ -49,7 +49,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
     'waffle.middleware.WaffleMiddleware',
 )
 
