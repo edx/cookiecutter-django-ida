@@ -13,7 +13,7 @@ ALLOWED_HOSTS = ['*']
 LOGGING['handlers']['local']['level'] = 'INFO'
 
 CONFIG_FILE = get_env_setting('{{cookiecutter.repo_name|upper}}_CFG')
-with open(CONFIG_FILE) as f:
+with open(CONFIG_FILE, encoding='utf-8') as f:
     config_from_yaml = yaml.load(f)
     vars().update(config_from_yaml)
 
