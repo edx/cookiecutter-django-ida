@@ -2,6 +2,7 @@
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -26,5 +27,6 @@ class User(AbstractUser):
     def get_full_name(self):
         return self.full_name or super(User, self).get_full_name()
 
-    def __unicode__(self):
-        return unicode(self.get_full_name())
+    @python_2_unicode_compatible
+    def __str__(self):
+        return str(self.get_full_name())
