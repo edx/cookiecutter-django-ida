@@ -19,6 +19,7 @@ from auth_backends.urls import auth_urlpatterns
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
+from rest_framework_swagger.views import get_swagger_view
 
 from {{cookiecutter.repo_name}}.apps.core import views as core_views
 
@@ -27,6 +28,7 @@ admin.autodiscover()
 urlpatterns = auth_urlpatterns + [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include('{{cookiecutter.repo_name}}.apps.api.urls', namespace='api')),
+    url(r'^api-docs/', get_swagger_view(title='{{cookiecutter.repo_name}} API')),
     # Use the same auth views for all logins, including those originating from the browseable API.
     url(r'^api-auth/', include(auth_urlpatterns, namespace='rest_framework')),
     url(r'^auto_auth/$', core_views.AutoAuth.as_view(), name='auto_auth'),

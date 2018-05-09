@@ -28,6 +28,7 @@ INSTALLED_APPS = (
 
 THIRD_PARTY_APPS = (
     'rest_framework',
+    'rest_framework_swagger',
     'social_django',
     'waffle',
 )

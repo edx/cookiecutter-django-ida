@@ -1,5 +1,6 @@
 django==1.11.10
 django-extensions
+django-rest-swagger
 django-waffle
 djangorestframework
 edx-auth-backends
