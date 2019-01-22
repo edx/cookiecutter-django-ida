@@ -38,6 +38,9 @@ htmlcov
 nosetests.xml
 unittests.xml
 
+# PII annotation reports
+pii_report
+
 ### Internationalization artifacts
 *.mo
 *.po

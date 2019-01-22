@@ -3,3 +3,4 @@
 *.pyc
 repo_name
 .idea/
+.python-version

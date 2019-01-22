@@ -1,7 +1,8 @@
 {
-  "project_name": "project_name",
+  "project_name": "Full name of the project, e.g. Credentials service or Discovery service",
   "repo_name": "repo_name",
   "author_name": "edX",
+  "team_owning_repo": "edx/devops",
   "description": "A short description of the project.",
   "port": 8000
 }

@@ -7,7 +7,14 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class User(AbstractUser):
-    """Custom user model for use with OpenID Connect."""
+    """
+    Custom user model for use with OpenID Connect.
+
+    .. pii:: Stores full name, username, and email address for a user.
+    .. pii_types:: name, other
+    .. pii_retirement:: local_api
+
+    """
     full_name = models.CharField(_('Full Name'), max_length=255, blank=True, null=True)
 
     @property

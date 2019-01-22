@@ -13,5 +13,6 @@ install:
 script:
     - make validate_translations
     - make validate
+    - make pii_check
 after_success:
     - codecov

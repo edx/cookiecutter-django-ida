@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := test
 
 .PHONY: clean compile_translations dummy_translations extract_translations fake_translations help html_coverage \
-	migrate pull_translations push_translations quality requirements test update_translations validate
+	migrate pull_translations push_translations quality pii_check requirements test update_translations validate
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -17,6 +17,7 @@ help:
 	@echo "  pull_translations          pull translations from Transifex"
 	@echo "  push_translations          push source translation files (.po) from Transifex"
 	@echo "  quality                    run PEP8 and Pylint"
+	@echo "  pii_check                  check for PII annotations on all Django models"
 	@echo "  requirements               install requirements for local development"
 	@echo "  test                       run tests and generate coverage report"
 	@echo "  validate                   run tests and quality checks"
@@ -31,6 +32,7 @@ clean:
 	find . -name '*.pyc' -delete
 	coverage erase
 	rm -rf assets
+	rm -rf pii_report
 
 requirements:
 	pip install -qr requirements/local.txt --exists-action w
@@ -46,7 +48,11 @@ quality:
 	pep8 --config=.pep8 {{cookiecutter.repo_name}} *.py
 	pylint --rcfile=pylintrc {{cookiecutter.repo_name}} *.py
 
-validate: test quality
+pii_check:
+	DJANGO_SETTINGS_MODULE={{cookiecutter.repo_name}}.settings.test \
+	code_annotations django_find_annotations --config_file .pii_annotations.yml --lint --report --coverage
+
+validate: test quality pii_check
 
 migrate:
 	python manage.py migrate

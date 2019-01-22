@@ -1,0 +1,10 @@
+# This file describes this Open edX repo, as described in OEP-2:
+# http://open-edx-proposals.readthedocs.io/en/latest/oeps/oep-0002.html#specification
+
+nick: {{cookiecutter.repo_name[:5]}}
+oeps:
+  oep-30:
+    state: True
+openedx-release: {ref: master}
+owner: {{cookiecutter.team_owning_repo}}
+track-pulls: true
