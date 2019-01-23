@@ -1,7 +1,7 @@
 Testing
 =======
 
-The command below runs the Python tests and code quality validation—Pylint and PEP8.
+The command below runs the Python tests and code quality validation—Pylint and Pycodestyle.
 
 .. code-block:: bash
 

@@ -5,7 +5,7 @@
 # fake_app_1.FakeModelName:
 #    ".. no_pii::": "This model has no PII"
 # fake_app_2.FakeModel2:
-#    ".. choice_annotation::": foo, bar, bazadmin.LogEntry: {}
+#    ".. choice_annotation::": foo, bar, baz
 
 admin.LogEntry:
   ".. no_pii::": "This model has no PII"

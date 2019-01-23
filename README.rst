@@ -21,7 +21,7 @@ The necessary configuration is also in place to support:
 * Documentation (using Sphinx_)
 * Authentication with edX Open ID Connect
 * Loading settings from YAML (for production)
-* Pylint/PEP8 validation
+* Pylint/Pycodestyle validation
 * Travis CI
 
 .. _Sphinx: http://sphinx-doc.org/

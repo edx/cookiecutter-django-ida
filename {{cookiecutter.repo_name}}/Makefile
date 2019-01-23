@@ -16,7 +16,7 @@ help:
 	@echo "  prod-requirements          install requirements for production"
 	@echo "  pull_translations          pull translations from Transifex"
 	@echo "  push_translations          push source translation files (.po) from Transifex"
-	@echo "  quality                    run PEP8 and Pylint"
+	@echo "  quality                    run Pycodestyle and Pylint"
 	@echo "  pii_check                  check for PII annotations on all Django models"
 	@echo "  requirements               install requirements for local development"
 	@echo "  test                       run tests and generate coverage report"
@@ -45,7 +45,7 @@ test: clean
 	coverage report
 
 quality:
-	pep8 --config=.pep8 {{cookiecutter.repo_name}} *.py
+	pycodestyle {{cookiecutter.repo_name}} *.py
 	pylint --rcfile=pylintrc {{cookiecutter.repo_name}} *.py
 
 pii_check:
