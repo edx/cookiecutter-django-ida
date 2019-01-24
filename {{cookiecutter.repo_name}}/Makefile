@@ -1,7 +1,8 @@
 .DEFAULT_GOAL := test
 
 .PHONY: clean compile_translations dummy_translations extract_translations fake_translations help html_coverage \
-	migrate pull_translations push_translations quality pii_check requirements test update_translations validate
+	migrate pull_translations push_translations quality pii_check requirements test update_translations validate \
+	dev_requirements test_requirements quality_requirements doc_requirements prod_requirements
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -13,14 +14,18 @@ help:
 	@echo "  help                       display this help message"
 	@echo "  html_coverage              generate and view HTML coverage report"
 	@echo "  migrate                    apply database migrations"
-	@echo "  prod-requirements          install requirements for production"
+	@echo "  dev_requirements           install requirements for local development"
+	@echo "  test_requirements          install requirements for testing"
+	@echo "  quality_requirements       install requirements for quality"
+	@echo "  doc_requirements           install requirements for documentation"
+	@echo "  prod_requirements          install requirements for production"
 	@echo "  pull_translations          pull translations from Transifex"
 	@echo "  push_translations          push source translation files (.po) from Transifex"
 	@echo "  quality                    run Pycodestyle and Pylint"
 	@echo "  pii_check                  check for PII annotations on all Django models"
 	@echo "  requirements               install requirements for local development"
 	@echo "  test                       run tests and generate coverage report"
-	@echo "  validate                   run tests and quality checks"
+	@echo "  validate                   run tests, quality, and PII annotation checks"
 	@echo "  start-devstack             run a local development copy of the server"
 	@echo "  open-devstack              open a shell on the server started by start-devstack"
 	@echo "  pkg-devstack               build the {{cookiecutter.repo_name}} image from the latest configuration and code"
@@ -34,17 +39,28 @@ clean:
 	rm -rf assets
 	rm -rf pii_report
 
-requirements:
-	pip install -qr requirements/local.txt --exists-action w
+requirements: dev_requirements
 
-prod-requirements:
+dev_requirements:
+	pip install -qr requirements/dev.txt --exists-action w
+
+test_requirements:
+	pip install -qr requirements/test.txt --exists-action w
+
+quality_requirements:
+	pip install -qr requirements/quality.txt --exists-action w
+
+doc_requirements:
+	pip install -qr requirements/doc.txt --exists-action w
+
+prod_requirements:
 	pip install -qr requirements.txt --exists-action w
 
-test: clean
+test: clean test_requirements
 	coverage run ./manage.py test {{cookiecutter.repo_name}} --settings={{cookiecutter.repo_name}}.settings.test
 	coverage report
 
-quality:
+quality: quality_requirements
 	pycodestyle {{cookiecutter.repo_name}} *.py
 	pylint --rcfile=pylintrc {{cookiecutter.repo_name}} *.py
 
@@ -59,6 +75,18 @@ migrate:
 
 html_coverage:
 	coverage html && open htmlcov/index.html
+
+upgrade: export CUSTOM_COMPILE_COMMAND=make upgrade
+upgrade: ## update the requirements/*.txt files with the latest packages satisfying requirements/*.in
+	pip install -qr requirements/pip-tools.txt
+	# Make sure to compile files after any other files they include!
+	pip-compile --upgrade -o requirements/pip-tools.txt requirements/pip-tools.in
+	pip-compile --upgrade -o requirements/base.txt requirements/base.in
+	pip-compile --upgrade -o requirements/test.txt requirements/test.in
+	pip-compile --upgrade -o requirements/doc.txt requirements/doc.in
+	pip-compile --upgrade -o requirements/quality.txt requirements/quality.in
+	pip-compile --upgrade -o requirements/dev.txt requirements/dev.in
+	pip-compile --upgrade -o requirements/production.txt requirements/production.in
 
 extract_translations:
 	python manage.py makemessages -l en -v1 -d django

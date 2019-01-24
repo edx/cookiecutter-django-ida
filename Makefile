@@ -25,4 +25,5 @@ test:
 	. repo_name/.venv/bin/activate && cd repo_name && make fake_translations
 
 	# Ensure documentation can be compiled
+	. repo_name/.venv/bin/activate && cd repo_name && make doc_requirements
 	. repo_name/.venv/bin/activate && cd repo_name/docs && make html
