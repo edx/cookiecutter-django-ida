@@ -5,6 +5,4 @@ nick: ccdida
 oeps:
   oep-30:
     applicable: False
-openedx-release: {ref: master}
 owner: edx/core
-track-pulls: true

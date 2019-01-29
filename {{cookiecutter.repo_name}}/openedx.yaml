@@ -7,4 +7,3 @@ oeps:
     state: True
 openedx-release: {ref: master}
 owner: {{cookiecutter.team_owning_repo}}
-track-pulls: true
