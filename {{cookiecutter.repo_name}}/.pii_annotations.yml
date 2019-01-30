@@ -3,10 +3,10 @@ report_path: pii_report
 safelist_path: .annotation_safe_list.yml
 coverage_target: 100.0
 annotations:
-    ".. no_pii::":
+    ".. no_pii:":
     "pii_group":
-        - ".. pii::":
-        - ".. pii_types::":
+        - ".. pii:":
+        - ".. pii_types:":
             choices:
               - id # Unique identifier for the user which is shared across systems
               - name # Used for any part of the user’s name
@@ -24,7 +24,7 @@ annotations:
               - image
               - video
               - other
-        - ".. pii_retirement::":
+        - ".. pii_retirement:":
             choices:
               - retained     # Intentionally kept for legal reasons
               - local_api    # An API exists in this repository for retiring this information

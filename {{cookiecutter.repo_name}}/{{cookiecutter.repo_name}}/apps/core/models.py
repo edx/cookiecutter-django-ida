@@ -10,9 +10,9 @@ class User(AbstractUser):
     """
     Custom user model for use with OpenID Connect.
 
-    .. pii:: Stores full name, username, and email address for a user.
-    .. pii_types:: name, other
-    .. pii_retirement:: local_api
+    .. pii: Stores full name, username, and email address for a user.
+    .. pii_types: name, username, email_address
+    .. pii_retirement: local_api
 
     """
     full_name = models.CharField(_('Full Name'), max_length=255, blank=True, null=True)

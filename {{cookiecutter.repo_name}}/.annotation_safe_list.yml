@@ -3,35 +3,35 @@
 # See https://code-annotations.readthedocs.io/en/latest/safelist.html for more information.
 #
 # fake_app_1.FakeModelName:
-#    ".. no_pii::": "This model has no PII"
+#    ".. no_pii:": "This model has no PII"
 # fake_app_2.FakeModel2:
-#    ".. choice_annotation::": foo, bar, baz
+#    ".. choice_annotation:": foo, bar, baz
 
 admin.LogEntry:
-  ".. no_pii::": "This model has no PII"
+  ".. no_pii:": "This model has no PII"
 auth.Group:
-  ".. no_pii::": "This model has no PII"
+  ".. no_pii:": "This model has no PII"
 auth.Permission:
-  ".. no_pii::": "This model has no PII"
+  ".. no_pii:": "This model has no PII"
 contenttypes.ContentType:
-  ".. no_pii::": "This model has no PII"
+  ".. no_pii:": "This model has no PII"
 sessions.Session:
-  ".. no_pii::": "This model has no PII"
+  ".. no_pii:": "This model has no PII"
 social_django.Association:
-  ".. no_pii::": "This model has no PII"
+  ".. no_pii:": "This model has no PII"
 social_django.Code:
-  ".. pii::": "Email address"
-  ".. pii_types::": other
-  ".. pii_retirement::": local_api
+  ".. pii:": "Email address"
+  ".. pii_types:": other
+  ".. pii_retirement:": local_api
 social_django.Nonce:
-  ".. no_pii::": "This model has no PII"
+  ".. no_pii:": "This model has no PII"
 social_django.Partial:
-  ".. no_pii::": "This model has no PII"
+  ".. no_pii:": "This model has no PII"
 social_django.UserSocialAuth:
-  ".. no_pii::": "This model has no PII"
+  ".. no_pii:": "This model has no PII"
 waffle.Flag:
-  ".. no_pii::": "This model has no PII"
+  ".. no_pii:": "This model has no PII"
 waffle.Sample:
-  ".. no_pii::": "This model has no PII"
+  ".. no_pii:": "This model has no PII"
 waffle.Switch:
-  ".. no_pii::": "This model has no PII"
+  ".. no_pii:": "This model has no PII"
