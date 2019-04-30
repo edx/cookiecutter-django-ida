@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class User(AbstractUser):
     """
-    Custom user model for use with OpenID Connect.
+    Custom user model for use with python-social-auth via edx-auth-backends.
 
     .. pii: Stores full name, username, and email address for a user.
     .. pii_types: name, username, email_address
@@ -19,9 +19,9 @@ class User(AbstractUser):
 
     @property
     def access_token(self):
-        """ Returns an OAuth2 access token for this user, if one exists; otherwise None.
-
-        Assumes user has authenticated at least once with edX Open ID Connect.
+        """
+        Returns an OAuth2 access token for this user, if one exists; otherwise None.
+        Assumes user has authenticated at least once with the OAuth2 provider (LMS).
         """
         try:
             return self.social_auth.first().extra_data[u'access_token']  # pylint: disable=no-member

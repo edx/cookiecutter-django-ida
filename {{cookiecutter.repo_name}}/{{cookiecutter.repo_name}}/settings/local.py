@@ -50,12 +50,15 @@ INTERNAL_IPS = ('127.0.0.1',)
 # Use a non-SSL URL for authorization redirects
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = False
 
-# Set these to the correct values for your OAuth2/OpenID Connect provider (e.g., devstack)
-SOCIAL_AUTH_EDX_OIDC_KEY = 'replace-me'
-SOCIAL_AUTH_EDX_OIDC_SECRET = 'replace-me'
-SOCIAL_AUTH_EDX_OIDC_URL_ROOT = 'replace-me'
-SOCIAL_AUTH_EDX_OIDC_LOGOUT_URL = 'replace-me'
-SOCIAL_AUTH_EDX_OIDC_ID_TOKEN_DECRYPTION_KEY = SOCIAL_AUTH_EDX_OIDC_SECRET
+# Generic OAuth2 variables irrespective of SSO/backend service key types.
+OAUTH2_PROVIDER_URL = 'http://localhost:18000/oauth2'
+
+JWT_AUTH.update({
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_SECRET_KEY': SOCIAL_AUTH_EDX_OAUTH2_SECRET,
+    'JWT_ISSUER': OAUTH2_PROVIDER_URL,
+    'JWT_AUDIENCE': SOCIAL_AUTH_EDX_OAUTH2_KEY,
+})
 
 ENABLE_AUTO_AUTH = True
 

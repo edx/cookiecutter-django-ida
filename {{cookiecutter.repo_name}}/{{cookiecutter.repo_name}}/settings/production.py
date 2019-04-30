@@ -12,10 +12,27 @@ ALLOWED_HOSTS = ['*']
 
 LOGGING['handlers']['local']['level'] = 'INFO'
 
+DICT_UPDATE_KEYS = ('JWT_AUTH',)
+
+FILE_STORAGE_BACKEND = {}
+
 CONFIG_FILE = get_env_setting('{{cookiecutter.repo_name|upper}}_CFG')
 with open(CONFIG_FILE, encoding='utf-8') as f:
     config_from_yaml = yaml.load(f)
+
+    # Remove the items that should be used to update dicts, and apply them separately rather
+    # than pumping them into the local vars.
+    dict_updates = {key: config_from_yaml.pop(key, None) for key in DICT_UPDATE_KEYS}
+
+    for key, value in dict_updates.items():
+        if value:
+            vars()[key].update(value)
+
     vars().update(config_from_yaml)
+
+    # Load the files storage backend settings for django storages
+    vars().update(FILE_STORAGE_BACKEND)
+
 
 DB_OVERRIDES = dict(
     PASSWORD=environ.get('DB_MIGRATION_PASS', DATABASES['default']['PASSWORD']),
