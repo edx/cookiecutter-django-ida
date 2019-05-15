@@ -3,6 +3,8 @@
 
 nick: ccdida
 oeps:
-  oep-30:
-    applicable: False
+  oep-2:  true  # Repository metadata
+  oep-7:  true  # Python 3
+  oep-30:       # PII annotation
+    applicable: false
 owner: edx/core

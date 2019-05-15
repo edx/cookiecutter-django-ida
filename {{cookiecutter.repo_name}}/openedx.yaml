@@ -3,7 +3,8 @@
 
 nick: {{cookiecutter.repo_name[:5]}}
 oeps:
-  oep-30:
-    state: True
+  oep-2:  true  # Repository metadata
+  oep-7:  true  # Python 3
+  oep-30: true  # PII annotation
 openedx-release: {ref: master}
 owner: {{cookiecutter.team_owning_repo}}
