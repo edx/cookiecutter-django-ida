@@ -1,6 +1,8 @@
 import os
 from os.path import join, abspath, dirname
 
+from corsheaders.defaults import default_headers as corsheaders_default_headers
+
 # PATH vars
 here = lambda *x: join(abspath(dirname(__file__)), *x)
 PROJECT_ROOT = here("..")
@@ -27,6 +29,8 @@ INSTALLED_APPS = (
 )
 
 THIRD_PARTY_APPS = (
+    'corsheaders',
+    'csrf.apps.CsrfAppConfig',  # Enables frontend apps to retrieve CSRF tokens
     'rest_framework',
     'rest_framework_swagger',
     'social_django',
@@ -42,9 +46,11 @@ INSTALLED_APPS += THIRD_PARTY_APPS
 INSTALLED_APPS += PROJECT_APPS
 
 MIDDLEWARE_CLASSES = (
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'edx_rest_framework_extensions.auth.jwt.middleware.JwtAuthCookieMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
@@ -53,6 +59,13 @@ MIDDLEWARE_CLASSES = (
     'social_django.middleware.SocialAuthExceptionMiddleware',
     'waffle.middleware.WaffleMiddleware',
 )
+
+# Enable CORS
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = corsheaders_default_headers + (
+    'use-jwt-cookie',
+)
+CORS_ORIGIN_WHITELIST = []
 
 ROOT_URLCONF = '{{cookiecutter.repo_name}}.urls'
 
@@ -147,6 +160,9 @@ SESSION_COOKIE_NAME = '{{cookiecutter.repo_name}}_sessionid'
 CSRF_COOKIE_NAME = '{{cookiecutter.repo_name}}_csrftoken'
 LANGUAGE_COOKIE_NAME = '{{cookiecutter.repo_name}}_language'
 # END COOKIE CONFIGURATION
+
+CSRF_COOKIE_SECURE = False
+CSRF_TRUSTED_ORIGINS = []
 
 # AUTHENTICATION CONFIGURATION
 LOGIN_URL = '/login/'
