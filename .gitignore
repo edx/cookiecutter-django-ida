@@ -4,3 +4,4 @@
 repo_name
 .idea/
 .python-version
+.venv

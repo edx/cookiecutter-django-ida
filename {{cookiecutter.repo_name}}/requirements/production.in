@@ -4,4 +4,4 @@
 gevent
 gunicorn
 #mysqlclient
-PyYAML
+PyYAML>=5.1

@@ -4,8 +4,8 @@
 
 code-annotations
 coverage
-django-nose
 django-dynamic-fixture    # library to create dynamic model instances for testing purposes
 edx-lint
 mock
-nose-ignore-docstring
+pytest-cov
+pytest-django

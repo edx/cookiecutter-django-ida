@@ -7,4 +7,7 @@ oeps:
   oep-7:  true  # Python 3
   oep-30:       # PII annotation
     applicable: false
-owner: edx/core
+owner: jmbowman
+supporting_teams:
+  - testeng
+
