@@ -63,7 +63,15 @@ You will be prompted for a few basic details (described below). These will be us
 Requirements
 ~~~~~~~~~~~~
 
-The ``requirements`` files do NOT define package versions for many requirements because you should use the latest versions available when initializing a new project. Once you initialize your project run ``pip freeze``, and update the files in the ``requirements`` directory with pinned versions. Failure to do so could cause unexpected results when running tests or deploying.
+The ``requirements`` files packaged may contain out-of-date version pins.
+Once you initialize your project, run ``make upgrade`` to freshen them,
+and then continue to do so regularly going forward.
+Failure to do so could open your IDA to bugs, security vulnerabilities,
+and other issues.
+
+It is recommended to follow the instructions in
+`Adding repositories for auto python dependency management <https://openedx.atlassian.net/wiki/spaces/TE/pages/989135321/Adding+repositories+for+auto+python+dependency+management>`_
+in order to perform this process on a regular cadence.
 
 User Model Customization
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -101,6 +109,15 @@ Run this validation using the command below.
 .. code-block:: bash
 
     $ make test
+
+Upgrading Cookie-Cutter Requirements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``Makefile`` includes an ``upgrade`` target that creates a virtual environment
+and runs ``make upgrade`` within the cookie-cutter repository folder.
+
+This should be run regularly to ensure that newly-cut IDAs start out with
+relatively fresh requirement version pins.
 
 Reporting Security Issues
 -------------------------

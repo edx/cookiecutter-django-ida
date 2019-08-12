@@ -2,7 +2,8 @@
   "project_name": "Full name of the project, e.g. Credentials service or Discovery service",
   "repo_name": "repo_name",
   "author_name": "edX",
-  "team_owning_repo": "edx/devops",
+  "owner_name": "insert_github_name_of_human_who_owns_repo",
+  "team_supporting_repo": "insert_edx_github_team_name",
   "description": "A short description of the project.",
   "port": 8000
 }

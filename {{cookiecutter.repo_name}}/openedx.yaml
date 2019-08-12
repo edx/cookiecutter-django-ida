@@ -6,5 +6,8 @@ oeps:
   oep-2:  true  # Repository metadata
   oep-7:  true  # Python 3
   oep-30: true  # PII annotation
+  oep-0018: true  # Dependency management
 openedx-release: {ref: master}
-owner: {{cookiecutter.team_owning_repo}}
+owner: {{cookiecutter.owner_name}}
+supporting_teams:
+  - {{cookiecutter.team_supporting_repo}}

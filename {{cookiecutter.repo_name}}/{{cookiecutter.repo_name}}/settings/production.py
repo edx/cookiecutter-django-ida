@@ -12,8 +12,13 @@ ALLOWED_HOSTS = ['*']
 
 LOGGING['handlers']['local']['level'] = 'INFO'
 
+# Keep track of the names of settings that represent dicts. Instead of overriding the values in base.py,
+# the values read from disk should UPDATE the pre-configured dicts.
 DICT_UPDATE_KEYS = ('JWT_AUTH',)
 
+# This may be overridden by the YAML in {{cookiecutter.repo_name}}_CFG,
+# but it should be here as a default.
+MEDIA_STORAGE_BACKEND = {}
 FILE_STORAGE_BACKEND = {}
 
 CONFIG_FILE = get_env_setting('{{cookiecutter.repo_name|upper}}_CFG')
@@ -30,9 +35,12 @@ with open(CONFIG_FILE, encoding='utf-8') as f:
 
     vars().update(config_from_yaml)
 
-    # Load the files storage backend settings for django storages
+    # Unpack the media and files storage backend settings for django storages.
+    # These dicts are not Django settings themselves, but they contain a mapping
+    # of Django settings.
     vars().update(FILE_STORAGE_BACKEND)
-
+    vars().update(MEDIA_STORAGE_BACKEND)
+2
 
 DB_OVERRIDES = dict(
     PASSWORD=environ.get('DB_MIGRATION_PASS', DATABASES['default']['PASSWORD']),

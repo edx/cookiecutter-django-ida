@@ -21,20 +21,24 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework_swagger.views import get_swagger_view
 
+from {{cookiecutter.repo_name}}.apps.api import urls as api_urls
 from {{cookiecutter.repo_name}}.apps.core import views as core_views
+
 
 admin.autodiscover()
 
-urlpatterns = oauth2_urlpatterns + [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^api/', include('{{cookiecutter.repo_name}}.apps.api.urls', namespace='api')),
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'^api/', include(api_urls)),
     url(r'^api-docs/', get_swagger_view(title='{{cookiecutter.repo_name}} API')),
     # Use the same auth views for all logins, including those originating from the browseable API.
-    url(r'^api-auth/', include(oauth2_urlpatterns, namespace='rest_framework')),
+    url(r'^api-auth/', include(oauth2_urlpatterns)),
     url(r'^auto_auth/$', core_views.AutoAuth.as_view(), name='auto_auth'),
     url(r'^health/$', core_views.health, name='health'),
 ]
 
 if settings.DEBUG and os.environ.get('ENABLE_DJANGO_TOOLBAR', False):  # pragma: no cover
-    import debug_toolbar  # pylint: disable=wrong-import-order,wrong-import-position,import-error
+    # Disable pylint import error because we don't install django-debug-toolbar
+    # for CI build
+    import debug_toolbar  # pylint: disable=import-error
     urlpatterns.append(url(r'^__debug__/', include(debug_toolbar.urls)))

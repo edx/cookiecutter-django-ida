@@ -1,5 +1,5 @@
 import os
-from os.path import join, abspath, dirname
+from os.path import abspath, dirname, join
 
 from corsheaders.defaults import default_headers as corsheaders_default_headers
 
@@ -45,7 +45,7 @@ PROJECT_APPS = (
 INSTALLED_APPS += THIRD_PARTY_APPS
 INSTALLED_APPS += PROJECT_APPS
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
