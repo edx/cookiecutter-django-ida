@@ -63,9 +63,10 @@ You will be prompted for a few basic details (described below). These will be us
 Requirements
 ~~~~~~~~~~~~
 
-The ``requirements`` files packaged may contain out-of-date version pins.
-Once you initialize your project, run ``make upgrade`` to freshen them,
-and then continue to do so regularly going forward.
+Once you initialize your project, run ``make upgrade`` to generate
+``.txt`` files in the ``requirements/`` directory,
+which will contain pinned dependency versions.
+Regularly re-run this command going forward in order to freshen the version pins.
 Failure to do so could open your IDA to bugs, security vulnerabilities,
 and other issues.
 
@@ -100,6 +101,7 @@ Testing
 The ``Makefile`` includes a ``test`` target that runs basic validation on this template. This validation includes::
 
     * Create a new project using the template.
+    * Generate and install pinned requirements
     * Run the project's migrations and validations.
     * Extract and compile translations.
     * Compile documentation.
@@ -109,15 +111,6 @@ Run this validation using the command below.
 .. code-block:: bash
 
     $ make test
-
-Upgrading Cookie-Cutter Requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The ``Makefile`` includes an ``upgrade`` target that creates a virtual environment
-and runs ``make upgrade`` within the cookie-cutter repository folder.
-
-This should be run regularly to ensure that newly-cut IDAs start out with
-relatively fresh requirement version pins.
 
 Reporting Security Issues
 -------------------------
