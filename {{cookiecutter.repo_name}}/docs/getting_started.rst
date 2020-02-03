@@ -22,9 +22,12 @@ When developing locally, it may be useful to have settings overrides that you do
 If you need such overrides, create a file :file:`{{cookiecutter.repo_name}}/settings/private.py`. This file's values are
 read by :file:`{{cookiecutter.repo_name}}/settings/local.py`, but ignored by Git.
 
-Configure edX OAuth
--------------------
-This service relies on the LMS server as the OAuth 2.0 authentication provider.
+Configure edX OAuth (Optional)
+-------------------------------
+
+OAuth only needs to be configured if the IDA would like to use the LMS's authentication functionality in place of managing its own.
+
+This functionality relies on the LMS server as the OAuth 2.0 authentication provider.
 
 Configuring {{ cookiecutter.project_name }} to communicate with other IDAs using OAuth requires registering a new client with the authentication
 provider (LMS) and updating the Django settings for this project with the generated client credentials.
