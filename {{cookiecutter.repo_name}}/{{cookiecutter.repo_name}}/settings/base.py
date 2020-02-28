@@ -46,6 +46,10 @@ INSTALLED_APPS += THIRD_PARTY_APPS
 INSTALLED_APPS += PROJECT_APPS
 
 MIDDLEWARE = (
+    # Resets RequestCache utility for added safety.
+    'edx_django_utils.cache.middleware.RequestCacheMiddleware',
+    # Enables monitoring utility for writing custom metrics.
+    'edx_django_utils.monitoring.middleware.MonitoringCustomMetricsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -58,6 +62,12 @@ MIDDLEWARE = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
     'waffle.middleware.WaffleMiddleware',
+    # Enables force_django_cache_miss functionality for TieredCache.
+    'edx_django_utils.cache.middleware.TieredCacheMiddleware',
+    # Outputs monitoring metrics for a request.
+    'edx_rest_framework_extensions.middleware.RequestMetricsMiddleware',
+    # Ensures proper DRF permissions in support of JWTs
+    'edx_rest_framework_extensions.auth.jwt.middleware.EnsureJWTAuthSettingsMiddleware',
 )
 
 # Enable CORS
