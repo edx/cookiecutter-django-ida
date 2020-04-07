@@ -15,3 +15,8 @@ script:
     - make validate
 after_success:
     - codecov
+deploy:
+  provider: script
+  script: make travis_docker_push
+  on: 
+    branch: master
