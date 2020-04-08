@@ -37,7 +37,7 @@ A new OAuth 2.0 client can be created when using Devstack by visiting ``http://1
     2. Leave the user field blank.
     3. Specify the name of this service, ``{{ cookiecutter.project_name }}``, as the client name.
     4. Set the :guilabel:`URL` to the root path of this service: ``http://127.0.0.1:{{cookiecutter.port}}/``.
-    5. Set the :guilabel:`Redirect URL` to the complete endpoint: ``http://127.0.0.1:1{{cookiecutter.port}}/complete/edx-oauth2/``.
+    5. Set the :guilabel:`Redirect URL` to the complete endpoint: ``http://127.0.0.1:{{cookiecutter.port}}/complete/edx-oauth2/``.
     6. Copy the :guilabel:`Client ID` and :guilabel:`Client Secret` values. They will be used later.
     7. Select :guilabel:`Confidential` as the client type.
     8. Select :guilabel:`Authorization code` as the authorization grant type.

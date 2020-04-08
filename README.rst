@@ -55,6 +55,8 @@ You will be prompted for a few basic details (described below). These will be us
       - Full name of the project. (e.g., E-Commerce Service)
     * - repo_name
       - Short (Python-friendly) name of the project. This should also be the name of the repository (e.g., ecommerce, credentials).
+    * - repo_port
+      - Port number for the project. Should be in the form `18***` with the 3 digits being any that aren't currently in use by other services.
     * - author_name
       - The author of the documentation. Leave this as the default ("edX") unless you have a good reason to change it.
     * - description

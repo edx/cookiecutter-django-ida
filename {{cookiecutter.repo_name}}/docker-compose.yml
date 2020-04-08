@@ -16,7 +16,7 @@ memcache:
   container_name: {{cookiecutter.repo_name}}
   volumes:
     - .:/edx/app/{{cookiecutter.repo_name}}/{{cookiecutter.repo_name}}
-  command: bash -c 'gunicorn --reload --workers=2 --name {{cookiecutter.repo_name}} -b :8360 -c /edx/app/{{cookiecutter.repo_name}}/{{cookiecutter.repo_name}}/docker_gunicorn_configuration.py --log-file - --max-requests=1000 {{cookiecutter.repo_name}}.wsgi:application'
+  command: bash -c 'gunicorn --reload --workers=2 --name {{cookiecutter.repo_name}} -b :{{cookiecutter.port}} -c /edx/app/{{cookiecutter.repo_name}}/{{cookiecutter.repo_name}}/docker_gunicorn_configuration.py --log-file - --max-requests=1000 {{cookiecutter.repo_name}}.wsgi:application'
   environment:
     DJANGO_SETTINGS_MODULE: {{cookiecutter.repo_name}}.settings.devstack
   ports:
