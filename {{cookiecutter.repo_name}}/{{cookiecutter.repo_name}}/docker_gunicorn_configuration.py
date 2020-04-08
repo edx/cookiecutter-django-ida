@@ -16,10 +16,12 @@ def pre_request(worker, req):
 
 
 def close_all_caches():
-    # Close the cache so that newly forked workers cannot accidentally share
-    # the socket with the processes they were forked from. This prevents a race
-    # condition in which one worker could get a cache response intended for
-    # another worker.
+    """
+    Close the cache so that newly forked workers cannot accidentally share
+    the socket with the processes they were forked from. This prevents a race
+    condition in which one worker could get a cache response intended for
+    another worker.
+    """
     # We do this in a way that is safe for 1.4 and 1.8 while we still have some
     # 1.4 installations.
     from django.conf import settings
@@ -46,9 +48,9 @@ def close_all_caches():
 def post_fork(server, worker):  # pylint: disable=unused-argument
     close_all_caches()
 
-def when_ready(server):
+def when_ready(server):  # pylint: disable=unused-argument
+    """When running in debug mode, run Django's `check` to better match what `manage.py runserver` does"""
     from django.conf import settings
     from django.core.management import call_command
-    # Run Django's check when in debug mode to better match what `manage.py runserver` does. Helps find common errors.
     if settings.DEBUG:
         call_command("check")
