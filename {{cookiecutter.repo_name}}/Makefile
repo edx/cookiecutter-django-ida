@@ -138,14 +138,14 @@ docker_build:
 	docker build . -f Dockerfile -t openedx/{{cookiecutter.repo_name}}
 	docker build . -f Dockerfile --target newrelic -t openedx/{{cookiecutter.repo_name}}:latest-newrelic
 
-docker_tag: docker_build
+travis_docker_tag: docker_build
 	docker tag openedx/{{cookiecutter.repo_name}} openedx/{{cookiecutter.repo_name}}:$$TRAVIS_COMMIT
 	docker tag openedx/{{cookiecutter.repo_name}}:latest-newrelic openedx/{{cookiecutter.repo_name}}:$$TRAVIS_COMMIT-newrelic
 
-docker_auth:
+travis_docker_auth:
 	echo "$$DOCKER_PASSWORD" | docker login -u "$$DOCKER_USERNAME" --password-stdin
 
-docker_push: docker_tag docker_auth ## push to docker hub
+travis_docker_push: travis_docker_tag travis_docker_auth ## push to docker hub
 	docker push 'openedx/{{cookiecutter.repo_name}}:latest'
 	docker push "openedx/{{cookiecutter.repo_name}}:$$TRAVIS_COMMIT"
 	docker push 'openedx/{{cookiecutter.repo_name}}:latest-newrelic'

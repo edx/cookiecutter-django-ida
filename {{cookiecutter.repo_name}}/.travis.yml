@@ -17,6 +17,6 @@ after_success:
     - codecov
 deploy:
   provider: script
-  script: make docker_push
+  script: make travis_docker_push
   on: 
     branch: master
