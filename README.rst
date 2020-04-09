@@ -62,6 +62,16 @@ You will be prompted for a few basic details (described below). These will be us
     * - description
       - A short description of the project, used to initialize the documentation.
 
+After the new folder is created, you will need to:
+
+1. ``cd <new_repo_folder>``
+2. Create a python 3 virtual environment and activate it
+3. ``make upgrade``
+4. ``make docker_build``
+5. ``docker-compose up``
+
+**Note** This cookiecutter repo currently has some issues with repos that use a hyphen in their name. If this is the case, some pieces of the repo will need to be changed from ``new-repo-name`` to ``new_repo_name``, particularly the Python pieces.
+
 Requirements
 ~~~~~~~~~~~~
 

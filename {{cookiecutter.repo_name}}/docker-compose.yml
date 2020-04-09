@@ -11,11 +11,11 @@ memcache:
 
 {{cookiecutter.repo_name}}:
   # Uncomment this line to use the official {{cookiecutter.repo_name}} base image
-  image: {{cookiecutter.repo_name}}:v1
+  image: openedx/{{cookiecutter.repo_name}}
 
   container_name: {{cookiecutter.repo_name}}
   volumes:
-    - .:/edx/app/{{cookiecutter.repo_name}}/{{cookiecutter.repo_name}}
+    - .:/edx/app/{{cookiecutter.repo_name}}/
   command: bash -c 'gunicorn --reload --workers=2 --name {{cookiecutter.repo_name}} -b :{{cookiecutter.port}} -c /edx/app/{{cookiecutter.repo_name}}/{{cookiecutter.repo_name}}/docker_gunicorn_configuration.py --log-file - --max-requests=1000 {{cookiecutter.repo_name}}.wsgi:application'
   environment:
     DJANGO_SETTINGS_MODULE: {{cookiecutter.repo_name}}.settings.devstack
