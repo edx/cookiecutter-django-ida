@@ -168,6 +168,9 @@ dev.down: # Kills containers and all of their data that isn't in volumes
 dev.stop: # Stops containers so they can be restarted
 	docker-compose stop
 
+dev.restart:
+	docker-compose restart {{cookiecutter.repo_name}}
+
 app-shell: # Run a shell on the app container as root
 	docker exec -u 0 -it {{cookiecutter.repo_name}} bash
 

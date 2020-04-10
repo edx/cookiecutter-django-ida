@@ -68,7 +68,7 @@ After the new folder is created, you can start your new service by running the f
 2. ``make docker_build``
 3. ``make dev.up``
 
-If you need to provision your service, then you can run ``make dev.provision`` which will install requirements, run migrations, provision an IDA user in the LMS, and create the DOT applications.
+If you need to provision your service, then you can run ``make dev.provision`` which will install requirements, run migrations, provision an IDA service user in the LMS, and create the DOT applications.
 
 Requirements
 ~~~~~~~~~~~~
