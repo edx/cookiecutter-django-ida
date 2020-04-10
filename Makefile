@@ -9,20 +9,20 @@ test: clean
 	# Create a new project with the default values
 	cookiecutter . --no-input
 
-	virtualenv -p python3.6 repo_name/.venv
+	virtualenv -p python3.6 repo-name/.venv
 
 	# Generate requirement pins, install them, and execute the project's tests
-	. repo_name/.venv/bin/activate && cd repo_name && make upgrade validation_requirements
-	. repo_name/.venv/bin/activate && cd repo_name && python manage.py makemigrations
-	. repo_name/.venv/bin/activate && cd repo_name && make migrate validate
+	. repo-name/.venv/bin/activate && cd repo-name && make upgrade validation_requirements
+	. repo-name/.venv/bin/activate && cd repo-name && python manage.py makemigrations
+	. repo-name/.venv/bin/activate && cd repo-name && make migrate validate
 
 	# Ensure translations can be compiled
-	. repo_name/.venv/bin/activate && cd repo_name && make fake_translations
+	. repo-name/.venv/bin/activate && cd repo-name && make fake_translations
 
 	# Ensure documentation can be compiled
-	. repo_name/.venv/bin/activate && cd repo_name && make doc_requirements
-	. repo_name/.venv/bin/activate && cd repo_name/docs && make html
+	. repo-name/.venv/bin/activate && cd repo-name && make doc_requirements
+	. repo-name/.venv/bin/activate && cd repo-name/docs && make html
 
 clean:
 	rm -rf .venv
-	rm -rf repo_name
+	rm -rf repo-name

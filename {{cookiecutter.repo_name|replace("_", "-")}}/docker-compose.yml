@@ -1,13 +1,13 @@
-db:
+{{cookiecutter.repo_name}}.mysql:
   image: mysql:5.6
-  container_name: db
+  container_name: {{cookiecutter.repo_name}}.mysql
   environment:
     MYSQL_ROOT_PASSWORD: ""
     MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
-memcache:
+{{cookiecutter.repo_name}}.memcache:
   image: memcached:1.4.24
-  container_name: memcache
+  container_name: {{cookiecutter.repo_name}}.memcache
 
 {{cookiecutter.repo_name}}:
   # Uncomment this line to use the official {{cookiecutter.repo_name}} base image

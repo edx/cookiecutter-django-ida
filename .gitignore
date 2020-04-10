@@ -1,7 +1,7 @@
 *.log
 *.pot
 *.pyc
-repo_name
+repo-name
 .idea/
 .python-version
 .venv

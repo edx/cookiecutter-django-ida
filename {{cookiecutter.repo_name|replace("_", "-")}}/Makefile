@@ -150,3 +150,26 @@ travis_docker_push: travis_docker_tag travis_docker_auth ## push to docker hub
 	docker push "openedx/{{cookiecutter.repo_name}}:$$TRAVIS_COMMIT"
 	docker push 'openedx/{{cookiecutter.repo_name}}:latest-newrelic'
 	docker push "openedx/{{cookiecutter.repo_name}}:$$TRAVIS_COMMIT-newrelic"
+
+# Docker dev commands below
+
+dev.provision:
+	bash ./provision-{{cookiecutter.repo_name|replace("_", "-")}}.sh
+
+dev.up: # Starts all containers
+	docker-compose up -d
+
+dev.up.build:
+	docker-compose up -d --build
+
+dev.down: # Kills containers and all of their data that isn't in volumes
+	docker-compose down
+
+dev.stop: # Stops containers so they can be restarted
+	docker-compose stop
+
+app-shell: # Run a shell on the app container as root
+	docker exec -u 0 -it {{cookiecutter.repo_name}} bash
+
+attach:
+	docker attach {{cookiecutter.repo_name}}

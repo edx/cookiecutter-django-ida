@@ -54,7 +54,7 @@ You will be prompted for a few basic details (described below). These will be us
     * - project_name
       - Full name of the project. (e.g., E-Commerce Service)
     * - repo_name
-      - Short (Python-friendly) name of the project. This should also be the name of the repository (e.g., ecommerce, credentials).
+      - Short (Python friendly) name of the project (e.g., ecommerce, credentials, license_manager). The underscores will be converted to hyphens in the appropriate places (like the repo name)
     * - repo_port
       - Port number for the project. Should be in the form `18***` with the 3 digits being any that aren't currently in use by other services.
     * - author_name
@@ -62,15 +62,13 @@ You will be prompted for a few basic details (described below). These will be us
     * - description
       - A short description of the project, used to initialize the documentation.
 
-After the new folder is created, you will need to:
+After the new folder is created, you can start your new service by running the following:
 
 1. ``cd <new_repo_folder>``
-2. Create a python 3 virtual environment and activate it
-3. ``make upgrade``
-4. ``make docker_build``
-5. ``docker-compose up``
+2. ``make docker_build``
+3. ``make dev.up``
 
-**Note** This cookiecutter repo currently has some issues with repos that use a hyphen in their name. If this is the case, some pieces of the repo will need to be changed from ``new-repo-name`` to ``new_repo_name``, particularly the Python pieces.
+If you need to provision your service, then you can run ``make dev.provision`` which will install requirements, run migrations, provision an IDA user in the LMS, and create the DOT applications.
 
 Requirements
 ~~~~~~~~~~~~
