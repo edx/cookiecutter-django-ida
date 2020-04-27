@@ -12,7 +12,7 @@ test: clean
 	virtualenv -p python3.6 repo_name/.venv
 
 	# Generate requirement pins, install them, and execute the project's tests
-	. repo_name/.venv/bin/activate && cd repo_name && make upgrade validation_requirements
+	. repo_name/.venv/bin/activate && cd repo_name && pip install -U pip==19.3.1 wheel && make upgrade validation_requirements
 	. repo_name/.venv/bin/activate && cd repo_name && python manage.py makemigrations
 	. repo_name/.venv/bin/activate && cd repo_name && make migrate validate
 

@@ -6,7 +6,7 @@
         migrate html_coverage upgrade extract_translation dummy_translations \
         compile_translations fake_translations  pull_translations \
         push_translations start-devstack open-devstack  pkg-devstack \
-        detect_changed_source_translations validate_translations
+        detect_changed_source_translations validate_translations check_keywords
 
 define BROWSER_PYSCRIPT
 import os, webbrowser, sys
@@ -82,7 +82,10 @@ pii_check: ## check for PII annotations on all Django models
 	DJANGO_SETTINGS_MODULE={{cookiecutter.repo_name}}.settings.test \
 	code_annotations django_find_annotations --config_file .pii_annotations.yml --lint --report --coverage
 
-validate: test quality pii_check ## run tests, quality, and PII annotation checks
+check_keywords: ## Scan the Django models in all installed apps in this project for restricted field names
+	python manage.py check_reserved_keywords --override_file db_keyword_overrides.yml
+
+validate: test quality pii_check check_keywords ## run tests, quality, and PII annotation checks
 
 migrate: ## apply database migrations
 	python manage.py migrate
