@@ -1,3 +1,11 @@
+This repository has been archived and is no longer supported—use it at your own risk. This repository may depend on out-of-date libraries with security issues, and security updates will not be provided. Pull requests against this repository will also not be merged.
+
+This cookiecutter has been moved to `edx-cookiecutter`_
+
+.. _edx-cookecutter: https://github.com/edx/edx-cookiecutters
+
+
+
 cookiecutter-django-ida  |Travis|_
 ==================================
 .. |Travis| image:: https://travis-ci.org/edx/cookiecutter-django-ida.svg?branch=master
